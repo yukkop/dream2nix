@@ -24,15 +24,17 @@ in {
       '';
     };
 
-    extraScripts = l.mkOption {
-      type = t.listOf t.path;
-      default = "";
-      description = ''
-        Extra shell scripts to execute when `nix run .#{package}.lock` is called.
+    extraScripts = [
+      l.mkOption {
+        type = t.listOf t.path;
+        default = "";
+        description = ''
+          Extra shell scripts to execute when `nix run .#{package}.lock` is called.
 
-        This allows adding custom logic to the lock file generation.
-      '';
-    };
+          This allows adding custom logic to the lock file generation.
+        '';
+      }
+    ];
 
     fields = l.mkOption {
       type = t.attrsOf (t.submodule [
